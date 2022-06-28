@@ -7,7 +7,7 @@ read "${file}"
 function check_urls() { 
 	while read -r url; do
 		echo $url
-		command=$(curl -sL -w "%{http_code}\\n" $url -o /dev/null)
+		command=$(curl --connect-timeout 1200 -sL -w "%{http_code}\\n" $url -o /dev/null)
 		if [ $command == "200" ]; then
               		echo "http response is:" $command
               		echo "SUCCESS"
